@@ -42,5 +42,6 @@ def files(num):
 	return{
 		0 : u'Data\OneWordKeysHashtable.txt',
 		1 : u'Data\ComposedKeysHashtable.txt',
-		2 : u'Data\MacroPathsHashtable.txt'
+		2 : u'Data\MacroPathsHashtable.txt',
+		3 : u'Data\CustomInteractionsHashtable.txt'
 	}[num]

@@ -34,6 +34,10 @@ with open(files(1), mode = 'r') as f:
 with open(files(2), mode = 'r') as f:
 	macro_paths_ht = pickle.load(f)
 	f.close()
+	
+with open(files(3), mode = 'r') as f:
+	custom_interactions_ht = pickle.load(f)
+	f.close()
 
 
 #main loop
@@ -50,14 +54,26 @@ while vars.boucling == True:
 			if w in trigger_ht.keys():
 				for k in composed_trigger_ht.keys():
 					if k in u" ".join(w for w in words[last_index+1:idx]):
-						composed_trigger_ht[k](msg)
+						if composed_trigger_ht[k] == macro_exe:
+							macro_exe(macro_paths_ht, k)
+						elif composed_trigger_ht[k] == dial_exe:
+							dial_exe(custom_interactions_ht, k)
+						else:
+							composed_trigger_ht[k](msg)
 				last_index = idx
-						
-				trigger_ht[w](msg)
+				
+				if trigger_ht[w] == macro_exe:
+					macro_exe(macro_paths_ht, w)
+				elif trigger_ht[w] == dial_exe:
+					dial_exe(custom_interactions_ht, w)				
+				else:
+					trigger_ht[w](msg)
 
 		for k in composed_trigger_ht.keys():
 			if k in u" ".join(w  for w in words[last_index+1:]):
-				composed_trigger_ht[k](msg)
-
-
-#Music - localsearch - agenda - mail - env with relations
+				if composed_trigger_ht[k] == macro_exe:
+					macro_exe(macro_paths_ht, k)
+				elif composed_trigger_ht[k] == dial_exe:
+					dial_exe(custom_interactions_ht, k)
+				else:
+					composed_trigger_ht[k](msg)

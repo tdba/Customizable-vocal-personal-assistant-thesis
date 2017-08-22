@@ -14,4 +14,3 @@ engine.setProperty('rate', 130)
 def speak(rand):
 	engine.say(random.choice(rand))
 	engine.runAndWait()
-	

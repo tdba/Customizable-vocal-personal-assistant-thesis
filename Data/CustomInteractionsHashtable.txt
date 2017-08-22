@@ -1,0 +1,6 @@
+(dp0
+VCortana
+p1
+VEt c est qui cette Cortana?
+p2
+s.
